@@ -147,8 +147,9 @@ def set_celery_flower_password(file_path, value=None):
 
 def set_flags_in_envs(postgres_user, celery_flower_user, debug=False):
     local_django_envs_path = os.path.join(".env", ".local", ".django")
-    production_django_envs_path = os.path.join(".env", ".production", ".django")
     local_postgres_envs_path = os.path.join(".env", ".local", ".postgres")
+
+    production_django_envs_path = os.path.join(".env", ".production", ".django")
     production_postgres_envs_path = os.path.join(".env", ".production", ".postgres")
 
     set_django_secret_key(production_django_envs_path)
@@ -156,6 +157,7 @@ def set_flags_in_envs(postgres_user, celery_flower_user, debug=False):
 
     set_postgres_user(local_postgres_envs_path, value=postgres_user)
     set_postgres_password(local_postgres_envs_path, value=None)
+
     set_postgres_user(production_postgres_envs_path, value=postgres_user)
     set_postgres_password(production_postgres_envs_path, value=None)
 
@@ -173,7 +175,18 @@ def set_flags_in_settings_files():
     set_django_secret_key(os.path.join("config", "settings", "local.py"))
 
 
+def append_to_gitignore_file(ignored_line):
+    with open(".gitignore", "a") as gitignore_file:
+        gitignore_file.write(ignored_line)
+        gitignore_file.write("\n")
+
+
 def main():
+    append_to_gitignore_file(".env/.production")
+    set_flags_in_envs(
+        generate_random_user(),
+        generate_random_user(),
+    )
     set_flags_in_settings_files()
 
     print(SUCCESS + "Project initialized, keep up the good work!" + TERMINATOR)
