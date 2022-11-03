@@ -1,0 +1,13 @@
+{
+  "project_name": "My Awesome API",
+  "project_slug": "{{ cookiecutter.project_name.lower()|replace(' ', '_')|replace('-', '_')|replace('.', '_')|trim() }}",
+  "description": "Behold My Awesome API!",
+  "author_name": "Remy Rivals",
+  "api_domain_name": "api.example.com",
+  "client_domain_name": "example.com",
+  "email": "{{ cookiecutter.author_name.lower()|replace(' ', '-') }}@example.com",
+  "version": "0.1.0",
+  "timezone": "UTC",
+  "use_celery": "n",
+  "use_sentry": "n"
+}

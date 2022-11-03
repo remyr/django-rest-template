@@ -1,0 +1,43 @@
+version: '3'
+
+volumes:
+  {{ cookiecutter.project_slug }}_local_postgres_data: {}
+  {{ cookiecutter.project_slug }}_local_postgres_data_backups: {}
+
+services:
+  django:
+    build:
+      context: .
+      dockerfile: ./compose/local/django/Dockerfile
+    image: {{ cookiecutter.project_slug }}_local_django
+    container_name: {{ cookiecutter.project_slug }}_local_django
+#    platform: linux/x86_64
+    depends_on:
+      - postgres
+      - mailhog
+    volumes:
+      - .:/app:z
+    env_file:
+      - ./.env/.local/.django
+      - ./.env/.local/.postgres
+    ports:
+      - "8000:8000"
+    command: /start
+
+  postgres:
+    image: postgres
+    restart: always
+    container_name: {{ cookiecutter.project_slug }}_local_postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - {{ cookiecutter.project_slug }}_local_postgres_data:/var/lib/postgresql/data:Z
+      - {{ cookiecutter.project_slug }}_local_postgres_data_backups:/backups:z
+    env_file:
+      - .env/.local/.postgres
+
+  mailhog:
+      image: mailhog/mailhog
+      container_name: {{ cookiecutter.project_slug }}_local_mailhog
+      ports:
+        - "8025:8025"
