@@ -115,6 +115,12 @@ LOGGING = {
     },
 }
 
+# REST FRAMEWORK
+# ------------------------------------------------------------------------------
+REST_FRAMEWORK['DEFAULT_RENDERER_CLASSES'] = (
+    'djangorestframework_camel_case.render.CamelCaseJSONRenderer',
+)
+
 # OTHERS
 # ------------------------------------------------------------------------------
 ACCOUNT_DEFAULT_HTTP_PROTOCOL = "https"

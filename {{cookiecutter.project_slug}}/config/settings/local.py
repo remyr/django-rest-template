@@ -28,6 +28,13 @@ CACHES = {
     }
 }
 
+# REST FRAMEWORK
+# ------------------------------------------------------------------------------
+REST_FRAMEWORK['DEFAULT_RENDERER_CLASSES'] = (
+    'djangorestframework_camel_case.render.CamelCaseJSONRenderer',
+    'djangorestframework_camel_case.render.CamelCaseBrowsableAPIRenderer',
+)
+
 # EMAIL
 # ------------------------------------------------------------------------------
 EMAIL_HOST = env("EMAIL_HOST", default="mailhog")
