@@ -22,7 +22,7 @@ DEBUG = env.bool("DJANGO_DEBUG", False)
 TIME_ZONE = 'UTC'
 LANGUAGE_CODE = "en-us"
 SITE_ID = 1
-USE_I18N = True
+USE_I18N = False
 USE_TZ = True
 LOCALE_PATHS = [str(BASE_DIR / "locale")]
 # ------------------------------------------------------------------------------
