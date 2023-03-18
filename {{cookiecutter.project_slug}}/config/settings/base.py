@@ -221,7 +221,7 @@ ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_CONFIRM_EMAIL_ON_GET = True
 
-ACCOUNT_ADAPTER = 'apps.accounts.adapters.DefaultAccountAdapter'
+ACCOUNT_ADAPTER = 'apps.authentication.adapters.DefaultAccountAdapter'
 
 REST_USE_JWT = True
 REST_SESSION_LOGIN = False
