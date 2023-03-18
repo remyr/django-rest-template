@@ -71,7 +71,7 @@ THIRD_PARTY_APPS = [
 ]
 
 LOCAL_APPS = [
-    "auth",
+    "authentication",
     # Your stuff: custom apps go here
 ]
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -89,7 +89,7 @@ AUTHENTICATION_BACKENDS = [
     # `allauth` specific authentication methods, such as login by e-mail
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
-AUTH_USER_MODEL = "auth.User"
+AUTH_USER_MODEL = "authentication.User"
 
 # PASSWORDS
 # ------------------------------------------------------------------------------
@@ -257,5 +257,5 @@ SIMPLE_JWT = {
 }
 
 REST_AUTH_SERIALIZERS = {
-    'USER_DETAILS_SERIALIZER': 'apps.accounts.serializers.UserDetailsSerializer'
+    'USER_DETAILS_SERIALIZER': 'apps.authentication.serializers.UserDetailsSerializer'
 }
