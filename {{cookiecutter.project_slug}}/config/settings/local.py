@@ -7,7 +7,12 @@ SECRET_KEY = env(
     "DJANGO_SECRET_KEY",
     default="!!!SET DJANGO_SECRET_KEY!!!",
 )
-ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1"]
+CORS_ORIGIN_ALLOW_ALL = True
+ALLOWED_HOSTS = [
+    "0.0.0.0",
+    "127.0.0.1",
+    "localhost" 
+]
 
 # django-extensions
 # ------------------------------------------------------------------------------

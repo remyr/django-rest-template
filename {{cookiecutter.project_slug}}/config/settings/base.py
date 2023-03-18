@@ -71,7 +71,7 @@ THIRD_PARTY_APPS = [
 ]
 
 LOCAL_APPS = [
-    "accounts",
+    "auth",
     # Your stuff: custom apps go here
 ]
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -89,7 +89,7 @@ AUTHENTICATION_BACKENDS = [
     # `allauth` specific authentication methods, such as login by e-mail
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
-AUTH_USER_MODEL = "accounts.User"
+AUTH_USER_MODEL = "auth.User"
 
 # PASSWORDS
 # ------------------------------------------------------------------------------
