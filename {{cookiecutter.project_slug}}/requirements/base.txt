@@ -9,7 +9,7 @@ whitenoise==6.5.0  # https://github.com/evansd/whitenoise
 # Django
 # ------------------------------------------------------------------------------
 Django==4.2.3
-django-cors-headers==3.13.0
+django-cors-headers==4.2.0
 django-environ==0.9.0
 django-charid-field==0.2.2
 djangorestframework==3.14.0
