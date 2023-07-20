@@ -1,7 +1,7 @@
 argon2-cffi==21.3.0
 pytz==2023.3
 python-dotenv==1.0.0
-psycopg2==2.9.5
+psycopg2==2.9.6
 psycopg2-binary==2.9.5
 nanoid==2.0.0
 whitenoise==6.2.0  # https://github.com/evansd/whitenoise
