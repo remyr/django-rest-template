@@ -222,7 +222,7 @@ REST_FRAMEWORK = {
 }
 {%- if cookiecutter.use_clerk == "y" %}
 
-CLERK_DOMAIN = "saved-malamute-33.clerk.accounts.dev"
+CLERK_DOMAIN = env.str("CLERK_DOMAIN")
 
 SIMPLE_JWT = {
     "ALGORITHM": "RS256",
