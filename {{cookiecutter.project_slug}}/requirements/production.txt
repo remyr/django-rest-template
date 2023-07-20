@@ -5,7 +5,7 @@
 gunicorn==21.2.0  # https://github.com/benoitc/gunicorn
 psycopg2==2.9.6  # https://github.com/psycopg/psycopg2
 redis==4.6.0  # https://github.com/redis/redis-py
-hiredis==2.0.0  # https://github.com/redis/hiredis-py
+hiredis==2.2.3  # https://github.com/redis/hiredis-py
 
 # Django
 # ------------------------------------------------------------------------------
