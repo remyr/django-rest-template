@@ -38,7 +38,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # MIGRATIONS
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#migration-modules
-MIGRATION_MODULES = {"sites": "apps.contrib.sites.migrations"}
+# MIGRATION_MODULES = {"sites": "apps.contrib.sites.migrations"}
 
 # URLS
 # ------------------------------------------------------------------------------
@@ -59,14 +59,7 @@ DJANGO_APPS = [
 
 THIRD_PARTY_APPS = [
     "rest_framework",
-    "rest_framework.authtoken",
     "corsheaders",
-    'rest_framework_simplejwt.token_blacklist',
-    'dj_rest_auth',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'dj_rest_auth.registration',
     # "drf_spectacular",
 ]
 
@@ -84,10 +77,7 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 # AUTHENTICATION
 # ------------------------------------------------------------------------------
 AUTHENTICATION_BACKENDS = [
-    # Needed to login by username in Django admin, regardless of `allauth`
     'django.contrib.auth.backends.ModelBackend',
-    # `allauth` specific authentication methods, such as login by e-mail
-    'allauth.account.auth_backends.AuthenticationBackend',
 ]
 AUTH_USER_MODEL = "authentication.User"
 
@@ -210,23 +200,6 @@ EMAIL_BACKEND = env(
 )
 EMAIL_TIMEOUT = 5
 
-# DJANGO_ALLAUTH
-# ------------------------------------------------------------------------------
-ACCOUNT_EMAIL_SUBJECT_PREFIX = ""
-
-ACCOUNT_AUTHENTICATION_METHOD = 'email'
-ACCOUNT_USERNAME_REQUIRED = False
-ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_UNIQUE_EMAIL = True
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
-ACCOUNT_CONFIRM_EMAIL_ON_GET = True
-
-ACCOUNT_ADAPTER = 'apps.authentication.adapters.DefaultAccountAdapter'
-
-REST_USE_JWT = True
-REST_SESSION_LOGIN = False
-REST_AUTH_PW_RESET_USE_SITES_DOMAIN = True
-
 # REST FRAMEWORK
 # ------------------------------------------------------------------------------
 REST_FRAMEWORK = {
@@ -247,15 +220,24 @@ REST_FRAMEWORK = {
     'TEST_REQUEST_DEFAULT_FORMAT': 'json'
     # "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }
+{%- if cookiecutter.use_clerk == "y" %}
+
+CLERK_DOMAIN = "saved-malamute-33.clerk.accounts.dev"
 
 SIMPLE_JWT = {
+    "ALGORITHM": "RS256",
+    "ISSUER": f"https://{CLERK_DOMAIN}",
+    "JWK_URL": f"https://{CLERK_DOMAIN}/.well-known/jwks.json",
+    "USER_ID_FIELD": "subclaim",
+    "USER_ID_CLAIM": "sub",
+    "JTI_CLAIM": None,
+    "TOKEN_TYPE_CLAIM": None,
+}
+{% else %}SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
-    'ROTATE_REFRESH_TOKENS': True,
-    'BLACKLIST_AFTER_ROTATION': True,
-    'UPDATE_LAST_LOGIN': True,
 }
-
+{% endif %}
 REST_AUTH_SERIALIZERS = {
     'USER_DETAILS_SERIALIZER': 'apps.authentication.serializers.UserDetailsSerializer'
 }

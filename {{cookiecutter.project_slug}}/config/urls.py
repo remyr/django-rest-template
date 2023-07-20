@@ -10,6 +10,7 @@ static_urls = static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns = [
     path(settings.ADMIN_URL, admin.site.urls),
     path('auth/', include("apps.authentication.urls")),
+    path("", include("apps.core.urls")),
 ] + static_urls
 
 if settings.DEBUG:

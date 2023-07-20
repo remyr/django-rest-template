@@ -1,1 +1,0 @@
-{% raw %}Hello, please confirm your email at {{ activate_url }}{% endraw %}

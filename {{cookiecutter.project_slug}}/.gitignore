@@ -327,3 +327,5 @@ tags
 .ipython/
 
 .DS_Store
+
+.env

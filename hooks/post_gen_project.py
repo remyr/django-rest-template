@@ -183,10 +183,10 @@ def append_to_gitignore_file(ignored_line):
 
 def main():
     append_to_gitignore_file(".env/.production")
-    set_flags_in_envs(
-        generate_random_user(),
-        generate_random_user(),
-    )
+    # set_flags_in_envs(
+    #     generate_random_user(),
+    #     generate_random_user(),
+    # )
     set_flags_in_settings_files()
 
     print(SUCCESS + "Project initialized, keep up the good work!" + TERMINATOR)

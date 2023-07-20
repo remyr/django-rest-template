@@ -8,6 +8,7 @@
   "email": "{{ cookiecutter.author_name.lower()|replace(' ', '-') }}@example.com",
   "version": "0.1.0",
   "timezone": "UTC",
+  "use_clerk": "n",
   "use_celery": "n",
   "use_sentry": "n"
 }
